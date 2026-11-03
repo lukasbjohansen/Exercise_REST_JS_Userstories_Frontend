@@ -13,6 +13,7 @@
 
 <body>
     <div id="app">
+<<<<<<< Updated upstream
         <div class="container-fluid">
             <h1 class="display-4">DR Music Records</h1>
             <form v-if="records.length > 0" @submit.prevent="searchRecords">
@@ -63,6 +64,69 @@
                     </tbody>
                 </table>
             </form>
+=======
+        <div class="container mt-4">
+            <h1 class="display-4 mb-4">DR Music Records</h1>
+
+            <div v-if="error" class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+
+            <table class="table table-sm align-middle">
+                <thead>
+                    <tr>
+                        <th class="align-middle">
+                            <div class="d-flex align-items-center">
+                                <span class="mr-2">Title</span>
+                                <input type="text" class="form-control form-control-sm" v-model="searchParams.title" placeholder="Search title...">
+                            </div>
+                        </th>
+                        <th class="align-middle">
+                            <div class="d-flex align-items-center">
+                                <span class="mr-2">Artist</span>
+                                <input type="text" class="form-control form-control-sm" v-model="searchParams.artist" placeholder="Search artist...">
+                            </div>
+                        </th>
+                        <th class="align-middle">
+                            <div class="d-flex align-items-center">
+                                <span class="mr-2">Duration</span>
+                                <input type="number" class="form-control form-control-sm mr-1" v-model.number="searchParams.minDuration" placeholder="Min (m)">
+                                <input type="number" class="form-control form-control-sm" v-model.number="searchParams.maxDuration" placeholder="Max (m)">
+                            </div>
+                        </th>
+                        <th class="align-middle">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center mr-2">
+                                    <span class="mr-2">Year</span>
+                                    <input type="number" class="form-control form-control-sm" v-model.number="searchParams.publicationYear" placeholder="Year...">
+                                </div>
+                                <button class="btn btn-primary btn-sm" @click="search">Search</button>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody v-if="records.length > 0">
+                    <tr v-for="record in records" :key="record.id || record.title">
+                        <td class="align-middle">{{ record.title }}</td>
+                        <td class="align-middle">{{ record.artist }}</td>
+                        <td class="align-middle" v-if="record.duration > 59">
+                            {{ Math.floor(record.duration / 60) }}:{{ String(record.duration % 60).padStart(2, '0') }}
+                        </td>
+                        <td class="align-middle" v-else>
+                            0:{{ String(record.duration).padStart(2, '0') }}
+                        </td>
+                        <td class="align-middle">{{ record.publicationYear }}</td>
+                    </tr>
+                </tbody>
+                <tbody v-else>
+                    <tr>
+                        <td colspan="4" class="text-center text-muted py-3">
+                            No records found.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+>>>>>>> Stashed changes
         </div>
     </div>
     <script src="index.js"></script>
