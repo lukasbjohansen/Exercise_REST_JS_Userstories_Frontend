@@ -14,21 +14,26 @@
 <body>
     <div id="app">
         <div class="container">
-            <h1>DR Music Records</h1>
-            <table class="table table-sm">
+            <h1 class="display-4">DR Music Records</h1>
+            <table v-if="records.length > 0" class="table table-sm">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Artist</th>
-                        <th>Duration in sec</th>
-                        <th>Publication Year</th>
+                        <th>Duration</th>
+                        <th>Year</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="record in records">
                         <td>{{ record.title }}</td>
                         <td>{{ record.artist }}</td>
-                        <td>{{ record.duration }}</td>
+                        <td v-if="record.duration > 59">
+                            {{ Math.floor(record.duration / 60) }}:{{ String(record.duration % 60).padStart(2, '0') }}
+                        </td>
+                        <td v-else>
+                            0:{{ String(record.duration).padStart(2, '0') }}
+                        </td>
                         <td>{{ record.publicationYear }}</td>
                     </tr>
                 </tbody>
