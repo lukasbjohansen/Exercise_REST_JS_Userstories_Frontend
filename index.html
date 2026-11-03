@@ -26,27 +26,27 @@
                         <th class="align-middle">
                             <div class="d-flex align-items-center">
                                 <span class="mr-2">Title</span>
-                                <input type="text" class="form-control form-control-sm" v-model="searchParams.title" placeholder="Search title...">
+                                <input type="text" id="title" class="form-control form-control-sm" v-model="searchParams.title" placeholder="Search title...">
                             </div>
                         </th>
                         <th class="align-middle">
                             <div class="d-flex align-items-center">
                                 <span class="mr-2">Artist</span>
-                                <input type="text" class="form-control form-control-sm" v-model="searchParams.artist" placeholder="Search artist...">
+                                <input type="text" id="artist" class="form-control form-control-sm" v-model="searchParams.artist" placeholder="Search artist...">
                             </div>
                         </th>
                         <th class="align-middle">
                             <div class="d-flex align-items-center">
                                 <span class="mr-2">Duration</span>
-                                <input type="number" class="form-control form-control-sm mr-1" v-model.number="searchParams.minDuration" placeholder="Min (m)">
-                                <input type="number" class="form-control form-control-sm" v-model.number="searchParams.maxDuration" placeholder="Max (m)">
+                                <input type="number" id="minDuration" class="form-control form-control-sm mr-1" v-model.number="searchParams.minDuration" placeholder="Min (m)">
+                                <input type="number" id="maxDuration" class="form-control form-control-sm" v-model.number="searchParams.maxDuration" placeholder="Max (m)">
                             </div>
                         </th>
                         <th class="align-middle">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center mr-2">
                                     <span class="mr-2">Year</span>
-                                    <input type="number" class="form-control form-control-sm" v-model.number="searchParams.publicationYear" placeholder="Year...">
+                                    <input type="number" id="publicationYear" class="form-control form-control-sm" v-model.number="searchParams.publicationYear" placeholder="Year...">
                                 </div>
                                 <button class="btn btn-primary btn-sm" @click="search">Search</button>
                             </div>
