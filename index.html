@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DR music records</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div id="app">
-        
+        <h1>DR Music Records</h1>
+        <ol>
+            <li>{{records.length}}</li>
+            <li v-for="record in records">fortest</li>
+        </ol>
     </div>
     <script src="index.js"></script>
 </body>

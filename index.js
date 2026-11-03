@@ -8,7 +8,7 @@ const app = Vue.createApp({
         }
     },
     async created() {
-        this.getRecords(baseUi)
+        await this.getRecords(baseUri)
     },
     methods: {
         async getRecords(uri){
