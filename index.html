@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
     <div id="app">
-        <h1>DR Music Records</h1>
-        <ol>
-            <li>{{records.length}}</li>
-            <li v-for="record in records">fortest</li>
-        </ol>
+        <div class="container">
+            <h1>DR Music Records</h1>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Duration in sec</th>
+                        <th>Publication Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="record in records">
+                        <td>{{ record.title }}</td>
+                        <td>{{ record.artist }}</td>
+                        <td>{{ record.duration }}</td>
+                        <td>{{ record.publicationYear }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="index.js"></script>
 </body>
+
 </html>
