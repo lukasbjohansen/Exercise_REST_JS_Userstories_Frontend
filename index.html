@@ -13,58 +13,6 @@
 
 <body>
     <div id="app">
-<<<<<<< Updated upstream
-        <div class="container-fluid">
-            <h1 class="display-4">DR Music Records</h1>
-            <form v-if="records.length > 0" @submit.prevent="searchRecords">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th>
-                                <label class="d-flex align-items-center mb-0 text-nowrap">
-                                    <span class="mr-2">Title</span>
-                                    <input type="text" class="form-control form-control-sm w-auto" v-model="searchQuery.title">
-                                </label>
-                            </th>
-                            <th>
-                                <label class="d-flex align-items-center mb-0 text-nowrap">
-                                    <span class="mr-2">Artist</span>
-                                    <input type="text" class="form-control form-control-sm w-auto" v-model="searchQuery.artist">
-                                </label>
-                            </th>
-                            <th>
-                                <label class="d-flex align-items-center mb-0 text-nowrap">
-                                    <span class="mr-2">Duration (seconds)</span>
-                                    <input type="number" min="0" class="form-control form-control-sm w-auto" v-model="searchQuery.duration">
-                                </label>
-                            </th>
-                            <th>
-                                <div class="d-flex align-items-center">
-                                    <label class="d-flex align-items-center mb-0 text-nowrap">
-                                        <span class="mr-2">Year</span>
-                                        <input type="number" class="form-control form-control-sm w-auto" v-model="searchQuery.publicationYear">
-                                    </label>
-                                    <button type="submit" class="btn btn-primary btn-sm ml-2">Submit</button>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="record in filteredRecords">
-                            <td>{{ record.title }}</td>
-                            <td>{{ record.artist }}</td>
-                            <td v-if="record.duration > 59">
-                                {{ Math.floor(record.duration / 60) }}:{{ String(record.duration % 60).padStart(2, '0') }}
-                            </td>
-                            <td v-else>
-                                0:{{ String(record.duration).padStart(2, '0') }}
-                            </td>
-                            <td>{{ record.publicationYear }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
-=======
         <div class="container mt-4">
             <h1 class="display-4 mb-4">DR Music Records</h1>
 
@@ -126,7 +74,6 @@
                     </tr>
                 </tbody>
             </table>
->>>>>>> Stashed changes
         </div>
     </div>
     <script src="index.js"></script>

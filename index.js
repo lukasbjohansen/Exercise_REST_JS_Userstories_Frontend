@@ -5,30 +5,6 @@ const app = Vue.createApp({
         return {
             records: [],
             error: null,
-<<<<<<< Updated upstream
-            searchQuery: {
-                title: "",
-                artist: "",
-                duration: "",
-                publicationYear: ""
-            },
-            appliedSearchQuery: null
-        }
-    },
-    computed: {
-        filteredRecords() {
-            if (!this.appliedSearchQuery) {
-                return this.records
-            }
-
-            const { title, artist, duration, publicationYear } = this.appliedSearchQuery
-            return this.records.filter(record =>
-                (!title || record.title.toLowerCase().includes(title.toLowerCase())) &&
-                (!artist || record.artist.toLowerCase().includes(artist.toLowerCase())) &&
-                (!duration || Number(record.duration) === Number(duration)) &&
-                (!publicationYear || String(record.publicationYear) === publicationYear)
-            )
-=======
             searchParams: {
                 title: null,
                 artist: null,
@@ -36,27 +12,25 @@ const app = Vue.createApp({
                 minDuration: null,
                 maxDuration: null
             }
->>>>>>> Stashed changes
         }
     },
     async created() {
         await this.search();
     },
     methods: {
-<<<<<<< Updated upstream
-        searchRecords() {
-            this.appliedSearchQuery = { ...this.searchQuery }
-        },
-        async getRecords(uri){
-=======
         async getRecords(uri, params = {}) {
->>>>>>> Stashed changes
             try {
-                if (params.minDuration != null)
-                    params.minDuration = Math.floor(params.minDuration * 60)
-                if (params.maxDuration != null)
-                    params.maxDuration = Math.floor(params.maxDuration * 60)
-                const response = await axios.get(uri, { params: params });
+                const queryParams = { ...params };
+                
+                // Omregner minutter til sekunder, da databasen/API'et forventer sekunder
+                if (queryParams.minDuration != null && queryParams.minDuration !== '') {
+                    queryParams.minDuration = Math.floor(queryParams.minDuration * 60);
+                }
+                if (queryParams.maxDuration != null && queryParams.maxDuration !== '') {
+                    queryParams.maxDuration = Math.floor(queryParams.maxDuration * 60);
+                }
+
+                const response = await axios.get(uri, { params: queryParams });
                 
                 if (response.status === 204 || !response.data) {
                     this.records = [];
