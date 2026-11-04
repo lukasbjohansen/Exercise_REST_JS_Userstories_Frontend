@@ -1,5 +1,5 @@
 const baseUri = "https://exerciserestjsuserstory.azurewebsites.net/api/Records";
-
+const authUrl       = "http://127.0.0.1:42069/api/Auth/login";
 const app = Vue.createApp({
     data() {
         return {
@@ -11,13 +11,39 @@ const app = Vue.createApp({
                 publicationYear: null,
                 minDuration: null,
                 maxDuration: null
-            }
+            },
+            auth: { username: "", password: "" },
+            authMessage: null,
+            jwtToken: null,
+            role: null,
+            loggedIn: false
         }
     },
     async created() {
         await this.search();
     },
     methods: {
+         async login(){
+             axios.post(authUrl, this.auth)
+                .then(response => {
+                    this.jwtToken = response.data.token;
+                    this.role = response.data.role;
+                    this.loggedIn = true;
+                    this.authMessage = "Authentication successful";
+                    this.search(); // Fetch records immediately after successful login
+                }).catch(ex => {
+                    this.authMessage = "Authentication failed - " + ex.message;
+                });
+        },
+        logout() {
+            this.jwtToken = null;
+            this.role = null;
+            this.loggedIn = false;
+            this.auth = { username: "", password: "" };
+            this.records = [];
+            this.error = null;
+            this.authMessage = "Logged out successfully";
+        },
         async getRecords(uri, params = {}) {
             try {
                 const queryParams = { ...params };
@@ -54,6 +80,6 @@ const app = Vue.createApp({
             }
             
             await this.getRecords(baseUri, cleanParams);
-        }
+        },
     }
 }).mount('#app');
