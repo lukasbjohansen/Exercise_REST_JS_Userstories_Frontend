@@ -20,7 +20,7 @@
                 {{ error }}
             </div>
 
-            <table class="table table-sm align-middle">
+            <table v-if="records.length > 0" class="table table-sm align-middle">
                 <thead>
                     <tr>
                         <th class="align-middle">
@@ -53,7 +53,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody v-if="records.length > 0">
+                <tbody>
                     <tr v-for="record in records" :key="record.id || record.title">
                         <td class="align-middle">{{ record.title }}</td>
                         <td class="align-middle">{{ record.artist }}</td>
@@ -64,13 +64,6 @@
                             0:{{ String(record.duration).padStart(2, '0') }}
                         </td>
                         <td class="align-middle">{{ record.publicationYear }}</td>
-                    </tr>
-                </tbody>
-                <tbody v-else>
-                    <tr>
-                        <td colspan="4" class="text-center text-muted py-3">
-                            No records found.
-                        </td>
                     </tr>
                 </tbody>
             </table>
